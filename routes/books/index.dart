@@ -21,6 +21,8 @@ Future<Response> _get(RequestContext context) async {
     final bookService = context.read<BookServiceImpl>();
     final requestQuery = context.request.uri.queryParameters;
 
+    print(requestQuery);
+
     final bookName = requestQuery['book_name']?.toString();
     final authorName = requestQuery['author_name']?.toString();
     final categoryName = requestQuery['category_name']?.toString();
@@ -31,8 +33,17 @@ Future<Response> _get(RequestContext context) async {
       return await bookService.searchBookByAuthor(authorName: authorName);
     } else if (categoryName != null && categoryName.isNotEmpty) {
       return await bookService.searchBookByCategory(categoryName: categoryName);
-    } else {
+    } else if (requestQuery.isEmpty) {
       return await bookService.getAllBooks();
+    } else {
+      return Response.json(
+        statusCode: HttpStatus.notFound,
+        body: {
+          'status_code': HttpStatus.notFound,
+          'message':
+              'Not found. please make sure that you write a correct endpoint',
+        },
+      );
     }
   } catch (error) {
     return Response.json(
@@ -60,7 +71,7 @@ Future<Response> _insert(RequestContext context) async {
         statusCode: HttpStatus.badRequest,
         body: {
           'status_code': HttpStatus.badRequest,
-          'result': 'Invalid request body',
+          'result': 'Invalid request body, request body is empty',
         },
       );
     }

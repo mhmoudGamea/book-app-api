@@ -24,20 +24,23 @@ class BookRepoImpl implements BookRepo {
             bookModel.copyWith(id: id).toJson(),
           );
     } catch (error) {
-      Exception('Un successiful insert operation');
+      throw Exception('Un successiful insert operation');
     }
   }
 
   @override
   Future<void> deleteBook({required String bookId}) async {
     try {
-      await _firestore
-          .document(
-            bookId,
-          )
-          .delete();
+      final docRef = await _firestore.document(bookId).get();
+      if (await docRef.reference.exists) {
+        await _firestore
+            .document(
+              bookId,
+            )
+            .delete();
+      }
     } catch (error) {
-      Exception('Un successiful delete operation');
+      throw Exception('Un successiful delete operation');
     }
   }
 
