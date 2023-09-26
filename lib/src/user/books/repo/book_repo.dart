@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
-import 'package:book_app_api/src/books/models/book_model.dart';
+import 'package:book_app_api/src/user/books/models/book_model.dart';
 
 abstract class BookRepo {
   Future<void> addBook({required BookModel bookModel});

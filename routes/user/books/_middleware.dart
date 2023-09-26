@@ -1,5 +1,5 @@
-import 'package:book_app_api/src/books/repo/book_repo_impl.dart';
-import 'package:book_app_api/src/books/service/book_service_impl.dart';
+import 'package:book_app_api/src/user/books/repo/book_repo_impl.dart';
+import 'package:book_app_api/src/user/books/service/book_service_impl.dart';
 import 'package:dart_frog/dart_frog.dart';
 
 Handler middleware(Handler handler) {

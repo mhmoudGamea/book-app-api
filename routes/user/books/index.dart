@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:book_app_api/src/books/models/book_model.dart';
-import 'package:book_app_api/src/books/service/book_service_impl.dart';
+import 'package:book_app_api/src/user/books/models/book_model.dart';
+import 'package:book_app_api/src/user/books/service/book_service_impl.dart';
 import 'package:book_app_api/utils/firebase_client.dart';
 import 'package:dart_frog/dart_frog.dart';
 
@@ -20,8 +20,6 @@ Future<Response> _get(RequestContext context) async {
   try {
     final bookService = context.read<BookServiceImpl>();
     final requestQuery = context.request.uri.queryParameters;
-
-    print(requestQuery);
 
     final bookName = requestQuery['book_name']?.toString();
     final authorName = requestQuery['author_name']?.toString();

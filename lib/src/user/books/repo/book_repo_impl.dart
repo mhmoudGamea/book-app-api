@@ -1,13 +1,13 @@
-// ignore_for_file: eol_at_end_of_file, public_member_api_docs
+// ignore_for_file: public_member_api_docs
 
-import 'package:book_app_api/src/books/models/book_model.dart';
-import 'package:book_app_api/src/books/repo/book_repo.dart';
+import 'package:book_app_api/src/user/books/models/book_model.dart';
+import 'package:book_app_api/src/user/books/repo/book_repo.dart';
 import 'package:book_app_api/utils/constants.dart';
 import 'package:firedart/firedart.dart';
 
 class BookRepoImpl implements BookRepo {
   final CollectionReference _firestore = Firestore.instance.collection(
-    Constants.collection,
+    Constants.bookCollection,
   );
 
   @override

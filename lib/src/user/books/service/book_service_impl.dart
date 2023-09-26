@@ -2,10 +2,10 @@
 
 import 'dart:io';
 
-import 'package:book_app_api/src/books/models/book_model.dart';
-import 'package:book_app_api/src/books/repo/book_repo.dart';
-import 'package:book_app_api/src/books/repo/book_repo_impl.dart';
-import 'package:book_app_api/src/books/service/book_service.dart';
+import 'package:book_app_api/src/user/books/models/book_model.dart';
+import 'package:book_app_api/src/user/books/repo/book_repo.dart';
+import 'package:book_app_api/src/user/books/repo/book_repo_impl.dart';
+import 'package:book_app_api/src/user/books/service/book_service.dart';
 import 'package:dart_frog/dart_frog.dart';
 
 class BookServiceImpl implements BookService {

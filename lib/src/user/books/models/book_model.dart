@@ -8,9 +8,12 @@ class BookModel {
     required this.image,
     required this.author,
     required this.category,
+    required this.downloadUrl,
     this.id,
     this.createdAt,
     this.rate,
+    this.read,
+    this.download,
   });
 
   /// Deserialization
@@ -21,9 +24,12 @@ class BookModel {
         image: json['image'] as String,
         author: json['author'] as String,
         category: json['category'] as String,
+        downloadUrl: json['download_url'] as String,
         createdAt:
             json['created_at'] == null ? null : json['created_at'] as String,
         rate: json['rate'] == null ? null : json['rate'] as double,
+        read: json['read'] == null ? null : json['read'] as double,
+        download: json['download'] == null ? null : json['download'] as double,
       );
 
   /// Serialization
@@ -34,8 +40,11 @@ class BookModel {
         'image': image,
         'author': author,
         'category': category,
+        'download_url': downloadUrl,
         'created_at': createdAt,
         'rate': rate,
+        'read': read,
+        'download': download,
       };
 
   /// Update BookModel
@@ -46,8 +55,11 @@ class BookModel {
     String? image,
     String? author,
     String? category,
+    String? downloadUrl,
     String? createdAt,
     double? rate,
+    double? read,
+    double? download,
   }) =>
       BookModel(
         id: id ?? this.id,
@@ -56,8 +68,11 @@ class BookModel {
         image: image ?? this.image,
         author: author ?? this.author,
         category: category ?? this.category,
+        downloadUrl: downloadUrl ?? this.downloadUrl,
         createdAt: createdAt ?? this.createdAt,
         rate: rate ?? this.rate,
+        read: read ?? this.read,
+        download: download ?? this.download,
       );
 
   static List<Map<String, dynamic>> bookList(Page<Document> page) {
@@ -69,12 +84,19 @@ class BookModel {
     return books;
   }
 
-  final String? id;
   final String name;
   final String description;
   final String image;
   final String author;
   final String category;
+  final String downloadUrl;
+  final String? id;
   final String? createdAt;
   final double? rate;
+
+  /// number of people who read the book from my app
+  final double? read;
+
+  /// number of people who download the book from my app
+  final double? download;
 }
