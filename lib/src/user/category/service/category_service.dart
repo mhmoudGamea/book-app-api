@@ -4,4 +4,5 @@ import 'package:dart_frog/dart_frog.dart';
 
 abstract class CategoryService {
   Future<Response> getCategories();
+  Future<Response> getCategory({required String id, required String name});
 }

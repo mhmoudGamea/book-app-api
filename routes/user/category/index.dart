@@ -7,18 +7,28 @@ import 'package:dart_frog/dart_frog.dart';
 Future<Response> onRequest(RequestContext context) async {
   await FirebaseClient.instance.connect();
   return switch (context.request.method) {
-    HttpMethod.get => _get(context),
+    HttpMethod.get => get(context),
     _ => _notAllowed(),
   };
 }
 
-Future<Response> _get(RequestContext context) async {
+/// 'll get all categories in home page
+/// + get specific category eg: Horror category
+Future<Response> get(RequestContext context) async {
   try {
-    final bookService = context.read<CategoryServiceImpl>();
+    final service = context.read<CategoryServiceImpl>();
     final requestQuery = context.request.uri.queryParameters;
 
-    if (requestQuery.isEmpty) {
-      return await bookService.getCategories();
+    final categoryName = requestQuery['category_name']?.toString();
+    final categoryId = requestQuery['category_id']?.toString();
+
+    if (categoryName != null &&
+        categoryName.isNotEmpty &&
+        categoryId != null &&
+        categoryId.isNotEmpty) {
+      return await service.getCategory(id: categoryId, name: categoryName);
+    } else if (requestQuery.isEmpty) {
+      return await service.getCategories();
     } else {
       return Response.json(
         statusCode: HttpStatus.notFound,

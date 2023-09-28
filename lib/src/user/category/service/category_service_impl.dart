@@ -30,4 +30,28 @@ class CategoryServiceImpl implements CategoryService {
       );
     }
   }
+
+  @override
+  Future<Response> getCategory({
+    required String id,
+    required String name,
+  }) async {
+    try {
+      final result = await _categoryRepo.getCategory(id: id, name: name);
+      return Response.json(
+        body: {
+          'status_code': 200,
+          'result': result,
+        },
+      );
+    } catch (error) {
+      return Response.json(
+        statusCode: HttpStatus.notFound,
+        body: {
+          'status_code': HttpStatus.notFound,
+          'result': error.toString(),
+        },
+      );
+    }
+  }
 }

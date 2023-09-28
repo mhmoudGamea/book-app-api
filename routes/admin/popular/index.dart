@@ -10,7 +10,7 @@ Future<Response> onRequest(RequestContext context) async {
   await FirebaseClient.instance.connect();
   return switch (context.request.method) {
     HttpMethod.get => _get(context),
-    HttpMethod.post => _insert(context),
+    HttpMethod.post => _add(context),
     HttpMethod.delete => _delete(context),
     _ => _notAllowed(),
   };
@@ -44,7 +44,7 @@ Future<Response> _get(RequestContext context) async {
   }
 }
 
-Future<Response> _insert(RequestContext context) async {
+Future<Response> _add(RequestContext context) async {
   try {
     final popular = context.read<PopularServiceImpl>();
 
@@ -76,13 +76,13 @@ Future<Response> _insert(RequestContext context) async {
 
 Future<Response> _delete(RequestContext context) async {
   try {
-    final bookService = context.read<PopularServiceImpl>();
+    final popular = context.read<PopularServiceImpl>();
     final requestQuery = context.request.uri.queryParameters;
 
     final bookId = requestQuery['book_id']?.toString();
 
     if (bookId != null && bookId.isNotEmpty) {
-      return await bookService.deleteBook(bookId: bookId);
+      return await popular.deleteBook(bookId: bookId);
     } else {
       return Response.json(
         statusCode: HttpStatus.badRequest,
