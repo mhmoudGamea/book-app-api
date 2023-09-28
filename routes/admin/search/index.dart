@@ -1,24 +1,32 @@
 import 'dart:io';
 
-import 'package:book_app_api/src/user/category/service/category_service_impl.dart';
+import 'package:book_app_api/src/admin/search/service/search_service_impl.dart';
 import 'package:book_app_api/utils/firebase_client.dart';
 import 'package:dart_frog/dart_frog.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   await FirebaseClient.instance.connect();
   return switch (context.request.method) {
-    HttpMethod.get => _get(context),
+    HttpMethod.get => _search(context),
     _ => _notAllowed(),
   };
 }
 
-Future<Response> _get(RequestContext context) async {
+Future<Response> _search(RequestContext context) async {
   try {
-    final bookService = context.read<CategoryServiceImpl>();
+    final search = context.read<SearchServiceImpl>();
     final requestQuery = context.request.uri.queryParameters;
 
-    if (requestQuery.isEmpty) {
-      return await bookService.getCategories();
+    final bookName = requestQuery['book_name']?.toString();
+    final authorName = requestQuery['author_name']?.toString();
+    final categoryName = requestQuery['category_name']?.toString();
+
+    if (bookName != null && bookName.isNotEmpty) {
+      return await search.searchBookByName(bookName: bookName);
+    } else if (authorName != null && authorName.isNotEmpty) {
+      return await search.searchBookByAuthor(authorName: authorName);
+    } else if (categoryName != null && categoryName.isNotEmpty) {
+      return await search.searchBookByCategory(categoryName: categoryName);
     } else {
       return Response.json(
         statusCode: HttpStatus.notFound,

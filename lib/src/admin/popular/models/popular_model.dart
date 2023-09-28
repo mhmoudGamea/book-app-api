@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs
 import 'package:firedart/firedart.dart';
 
-class BookModel {
-  const BookModel({
+class PopularModel {
+  const PopularModel({
     required this.name,
     required this.description,
     required this.image,
@@ -17,7 +17,7 @@ class BookModel {
   });
 
   /// Deserialization
-  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
+  factory PopularModel.fromJson(Map<String, dynamic> json) => PopularModel(
         id: json['id'] == null ? null : json['id'] as String,
         name: json['name'] as String,
         description: json['description'] as String,
@@ -47,8 +47,8 @@ class BookModel {
         'download': download,
       };
 
-  /// Update BookModel
-  BookModel copyWith({
+  /// Update PopularModel
+  PopularModel copyWith({
     String? id,
     String? name,
     String? description,
@@ -61,7 +61,7 @@ class BookModel {
     double? read,
     double? download,
   }) =>
-      BookModel(
+      PopularModel(
         id: id ?? this.id,
         name: name ?? this.name,
         description: description ?? this.description,

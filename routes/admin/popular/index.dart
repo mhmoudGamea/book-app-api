@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:book_app_api/src/user/books/models/book_model.dart';
-import 'package:book_app_api/src/user/books/service/book_service_impl.dart';
+import 'package:book_app_api/src/admin/popular/models/popular_model.dart';
+import 'package:book_app_api/src/admin/popular/service/popular_service_impl.dart';
 import 'package:book_app_api/utils/firebase_client.dart';
 import 'package:dart_frog/dart_frog.dart';
 
@@ -18,21 +18,11 @@ Future<Response> onRequest(RequestContext context) async {
 
 Future<Response> _get(RequestContext context) async {
   try {
-    final bookService = context.read<BookServiceImpl>();
+    final popular = context.read<PopularServiceImpl>();
     final requestQuery = context.request.uri.queryParameters;
 
-    final bookName = requestQuery['book_name']?.toString();
-    final authorName = requestQuery['author_name']?.toString();
-    final categoryName = requestQuery['category_name']?.toString();
-
-    if (bookName != null && bookName.isNotEmpty) {
-      return await bookService.searchBookByName(bookName: bookName);
-    } else if (authorName != null && authorName.isNotEmpty) {
-      return await bookService.searchBookByAuthor(authorName: authorName);
-    } else if (categoryName != null && categoryName.isNotEmpty) {
-      return await bookService.searchBookByCategory(categoryName: categoryName);
-    } else if (requestQuery.isEmpty) {
-      return await bookService.getAllBooks();
+    if (requestQuery.isEmpty) {
+      return await popular.getAllBooks();
     } else {
       return Response.json(
         statusCode: HttpStatus.notFound,
@@ -56,14 +46,14 @@ Future<Response> _get(RequestContext context) async {
 
 Future<Response> _insert(RequestContext context) async {
   try {
-    final bookService = context.read<BookServiceImpl>();
+    final popular = context.read<PopularServiceImpl>();
 
     final requestBody =
         json.decode(await context.request.body()) as Map<String, dynamic>;
 
     if (requestBody.isNotEmpty) {
-      final bookModel = BookModel.fromJson(requestBody);
-      return await bookService.addBook(bookModel: bookModel);
+      final popularModel = PopularModel.fromJson(requestBody);
+      return await popular.addBook(popularModel: popularModel);
     } else {
       return Response.json(
         statusCode: HttpStatus.badRequest,
@@ -86,7 +76,7 @@ Future<Response> _insert(RequestContext context) async {
 
 Future<Response> _delete(RequestContext context) async {
   try {
-    final bookService = context.read<BookServiceImpl>();
+    final bookService = context.read<PopularServiceImpl>();
     final requestQuery = context.request.uri.queryParameters;
 
     final bookId = requestQuery['book_id']?.toString();
@@ -116,6 +106,9 @@ Future<Response> _delete(RequestContext context) async {
 Future<Response> _notAllowed() async {
   return Response.json(
     statusCode: HttpStatus.methodNotAllowed,
-    body: 'Method not allowed',
+    body: {
+      'status_code': HttpStatus.methodNotAllowed,
+      'result': 'Method not allowed',
+    },
   );
 }

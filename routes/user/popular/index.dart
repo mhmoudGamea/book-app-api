@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:book_app_api/src/user/category/service/category_service_impl.dart';
+import 'package:book_app_api/src/user/popular/service/popular_service_impl.dart';
 import 'package:book_app_api/utils/firebase_client.dart';
 import 'package:dart_frog/dart_frog.dart';
 
@@ -14,11 +14,11 @@ Future<Response> onRequest(RequestContext context) async {
 
 Future<Response> _get(RequestContext context) async {
   try {
-    final bookService = context.read<CategoryServiceImpl>();
+    final popular = context.read<PopularServiceImpl>();
     final requestQuery = context.request.uri.queryParameters;
 
     if (requestQuery.isEmpty) {
-      return await bookService.getCategories();
+      return await popular.getAllBooks();
     } else {
       return Response.json(
         statusCode: HttpStatus.notFound,
