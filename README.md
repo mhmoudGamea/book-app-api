@@ -34,5 +34,5 @@ A demo on postman [![Postman: Demo][postman_badge]][postman_link]
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [dart_frog_badge]: https://img.shields.io/endpoint?url=https://tinyurl.com/dartfrog-badge
 [dart_frog_link]: https://dartfrog.vgv.dev
-[postman_badge]: https://th.bing.com/th/id/OIP.mujOqlQ9k9Mhpj1PbxsSDQAAAA?pid=ImgDet&rs=1
+[postman_badge]: https://th.bing.com/th?id=OSK.f640b1aecef558b8fb4493af14e8c6e3&w=130&h=70&c=7&o=6&dpr=1.3&pid=SANGAM
 [postman_link]: https://elements.getpostman.com/redirect?entityId=23987421-ddd6139a-172e-4b7f-84f0-5c22c2380ddb&entityType=collection
