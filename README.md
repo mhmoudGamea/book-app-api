@@ -20,7 +20,7 @@ dart_frog dev --port your_port
 > within **category** route there is another route **add_book** so that the admin can
 > add a new book in this category
 
-> So we have 3 endpoints on admin part `admin/category/add_book`, `admin/popular` and `admin/search`
+> So we have 4 endpoints on admin part `admin/category`,`admin/category/add_book`, `admin/popular` and `admin/search`
 > and another 3 endpoints on user part `user/category`, `user/popular` and `user/search`
 
 > **_NOTE:_** the user have limited permissions so he can send a **get** request only
