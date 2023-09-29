@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:book_app_api/src/admin/category/models/book_model.dart';
 import 'package:book_app_api/src/admin/category/models/category_model.dart';
 
 abstract class CategoryRepo {
@@ -13,4 +14,6 @@ abstract class CategoryRepo {
   Future<void> addCategory({required CategoryModel categoryModel});
 
   Future<bool> deleteCategory({required String categoryId});
+
+  Future<void> addBook({required BookModel bookModel});
 }

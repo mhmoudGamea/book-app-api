@@ -68,7 +68,7 @@ Future<Response> _add(RequestContext context) async {
       statusCode: HttpStatus.internalServerError,
       body: {
         'status_code': HttpStatus.internalServerError,
-        'message': 'Error in _insert method: $error',
+        'message': 'Error in _add method: $error',
       },
     );
   }

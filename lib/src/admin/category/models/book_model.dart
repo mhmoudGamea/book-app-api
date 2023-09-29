@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs
 import 'package:firedart/firedart.dart';
 
-class PopularModel {
-  const PopularModel({
+class BookModel {
+  const BookModel({
     required this.name,
     required this.description,
     required this.image,
@@ -18,7 +18,7 @@ class PopularModel {
   });
 
   /// Deserialization
-  factory PopularModel.fromJson(Map<String, dynamic> json) => PopularModel(
+  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
         id: json['id'] == null ? null : json['id'] as String,
         name: json['name'] as String,
         description: json['description'] as String,
@@ -26,7 +26,7 @@ class PopularModel {
         author: json['author'] as String,
         category: json['category'] as String,
         downloadUrl: json['download_url'] as String,
-        categoryId: json['category_id'] as String,
+        categoryId: json['categoryId'] as String,
         createdAt:
             json['created_at'] == null ? null : json['created_at'] as String,
         rate: json['rate'] == null ? null : json['rate'] as double,
@@ -47,11 +47,11 @@ class PopularModel {
         'rate': rate,
         'read': read,
         'download': download,
-        'category_id': categoryId,
+        'categoryId': categoryId,
       };
 
-  /// Update PopularModel
-  PopularModel copyWith({
+  /// Update BookModel
+  BookModel copyWith({
     String? id,
     String? name,
     String? description,
@@ -65,7 +65,7 @@ class PopularModel {
     double? download,
     String? categoryId,
   }) =>
-      PopularModel(
+      BookModel(
         id: id ?? this.id,
         name: name ?? this.name,
         description: description ?? this.description,
@@ -98,12 +98,11 @@ class PopularModel {
   final String? id;
   final String? createdAt;
   final double? rate;
+  final String categoryId;
 
   /// number of people who read the book from my app
   final double? read;
 
   /// number of people who download the book from my app
   final double? download;
-
-  final String categoryId;
 }

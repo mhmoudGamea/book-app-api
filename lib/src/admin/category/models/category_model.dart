@@ -19,9 +19,10 @@ class CategoryModel {
 
   CategoryModel copyWith({String? id, String? image, String? name}) =>
       CategoryModel(
-          id: id ?? this.id,
-          image: image ?? this.image,
-          name: name ?? this.name);
+        id: id ?? this.id,
+        image: image ?? this.image,
+        name: name ?? this.name,
+      );
 
   static List<Map<String, dynamic>> categoryList(Page<Document> page) {
     // ignore: omit_local_variable_types, prefer_final_locals

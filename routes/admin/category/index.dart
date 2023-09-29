@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:book_app_api/src/admin/category/models/category_model.dart';
 import 'package:book_app_api/src/admin/category/service/category_service_impl.dart';
+import 'package:book_app_api/utils/firebase_client.dart';
 import 'package:dart_frog/dart_frog.dart';
 
 Future<Response> onRequest(RequestContext context) async {
+  await FirebaseClient.instance.connect();
   return switch (context.request.method) {
     HttpMethod.get => _get(context),
     HttpMethod.post => _add(context),

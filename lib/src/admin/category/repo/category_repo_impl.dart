@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:book_app_api/src/admin/category/models/book_model.dart';
 import 'package:book_app_api/src/admin/category/models/category_model.dart';
 import 'package:book_app_api/src/admin/category/repo/category_repo.dart';
 import 'package:book_app_api/utils/constants.dart';
@@ -10,6 +11,7 @@ class CategoryRepoImpl implements CategoryRepo {
       Firestore.instance.collection(
     Constants.categoryCollection,
   );
+
   @override
   Future<void> addCategory({required CategoryModel categoryModel}) async {
     try {
@@ -48,10 +50,7 @@ class CategoryRepoImpl implements CategoryRepo {
   @override
   Future<List<Map<String, dynamic>>> getCategories() async {
     try {
-      final collection = Firestore.instance.collection(
-        Constants.categoryCollection,
-      );
-      final result = await collection.get();
+      final result = await _collectionReference.get();
       return CategoryModel.categoryList(result);
     } catch (error) {
       throw Exception("Can't get all categories");
@@ -71,6 +70,25 @@ class CategoryRepoImpl implements CategoryRepo {
       return CategoryModel.categoryList(result);
     } catch (error) {
       throw Exception("Can't get $name category");
+    }
+  }
+
+  @override
+  Future<void> addBook({required BookModel bookModel}) async {
+    try {
+      final collection = Firestore.instance.collection(
+        Constants.categoriesCollection,
+      );
+      final id = DateTime.now().millisecondsSinceEpoch.toString();
+      await collection
+          .document(bookModel.categoryId)
+          .collection(bookModel.category)
+          .document(id)
+          .set(bookModel.copyWith(id: id, read: 0, download: 0).toJson());
+    } catch (error) {
+      throw Exception(
+        "Can't add ${bookModel.name} to ${bookModel.category} category",
+      );
     }
   }
 }

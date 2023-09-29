@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:book_app_api/src/admin/category/models/book_model.dart';
 import 'package:book_app_api/src/admin/category/models/category_model.dart';
 import 'package:book_app_api/src/admin/category/repo/category_repo.dart';
 import 'package:book_app_api/src/admin/category/repo/category_repo_impl.dart';
@@ -102,6 +103,28 @@ class CategoryServiceImpl implements CategoryService {
         statusCode: HttpStatus.notFound,
         body: {
           'status_code': HttpStatus.notFound,
+          'result': error.toString(),
+        },
+      );
+    }
+  }
+
+  @override
+  Future<Response> addBook({required BookModel bookModel}) async {
+    try {
+      await _categoryRepo.addBook(bookModel: bookModel);
+      return Response.json(
+        body: {
+          'status_code': 200,
+          'result':
+              '${bookModel.name} book is added to ${bookModel.category} category',
+        },
+      );
+    } catch (error) {
+      return Response.json(
+        statusCode: HttpStatus.badRequest,
+        body: {
+          'status_code': HttpStatus.badRequest,
           'result': error.toString(),
         },
       );
