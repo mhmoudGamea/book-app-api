@@ -27,7 +27,7 @@ dart_frog dev --port your_port
 > but the admin can create new category, delete it, add new book or delete it and so on..
 
 A demo on postman
-[![Powered by Dart Frog][dart_frog_badge]][dart_frog_link]
+[![Postman: Demo][postman_badge]][postman_link]
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
@@ -35,3 +35,5 @@ A demo on postman
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [dart_frog_badge]: https://img.shields.io/endpoint?url=https://tinyurl.com/dartfrog-badge
 [dart_frog_link]: https://dartfrog.vgv.dev
+[postman_badge]: https://www.bing.com/images/blob?bcid=qKzFHNESoSIGnlpN9F2m7-o11GlG.....08
+[postman_link]: https://elements.getpostman.com/redirect?entityId=23987421-ddd6139a-172e-4b7f-84f0-5c22c2380ddb&entityType=collection
