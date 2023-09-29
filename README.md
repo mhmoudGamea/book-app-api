@@ -17,13 +17,17 @@ dart_frog dev --port your_port
 ```
 > the api contains **admin** route as well as **user** route each of which contains another
 > 3 routes **category**, **popular** and **search**
-> within **category** route there is another route **add_book** so the admin can
+> within **category** route there is another route **add_book** so that the admin can
 > add a new book in this category
 
 > So we have 3 endpoints on admin part `admin/category/add_book`, `admin/popular` and `admin/search`
 > and another 3 endpoints on user part `user/category`, `user/popular` and `user/search`
 
 > **_NOTE:_** the user have limited permissions so he can send a **get** request only
+> but the admin can create new category, delete it, add new book or delete it and so on..
+
+A demo on postman
+[![Powered by Dart Frog][dart_frog_badge]][dart_frog_link]
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
