@@ -26,7 +26,7 @@ dart_frog dev --port your_port
 > **_NOTE:_** the user have limited permissions so he can send a **get** request only
 > but the admin can create new category, delete it, add new book or delete it and so on..
 
-A demo on postman [![Postman: Demo][postman_badge]][postman_link]
+[![Postman: Demo][postman_badge]][postman_link]
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
@@ -34,5 +34,5 @@ A demo on postman [![Postman: Demo][postman_badge]][postman_link]
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [dart_frog_badge]: https://img.shields.io/endpoint?url=https://tinyurl.com/dartfrog-badge
 [dart_frog_link]: https://dartfrog.vgv.dev
-[postman_badge]: https://th.bing.com/th?id=OSK.f640b1aecef558b8fb4493af14e8c6e3&w=130&h=70&c=7&o=6&dpr=1.3&pid=SANGAM
+[postman_badge]: https://camo.githubusercontent.com/cfe0dd83317c9b523c7f3d8911ee61eb1e2fc869a64a8b6ae075c2fd6e5b17cd/68747470733a2f2f6173736574732e676574706f73746d616e2e636f6d2f636f6d6d6f6e2d73686172652f706f73746d616e2d6c6f676f2d686f72697a6f6e74616c2d333230783133322e706e67
 [postman_link]: https://elements.getpostman.com/redirect?entityId=23987421-ddd6139a-172e-4b7f-84f0-5c22c2380ddb&entityType=collection
