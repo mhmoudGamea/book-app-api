@@ -4,7 +4,26 @@
 [![License: MIT][license_badge]][license_link]
 [![Powered by Dart Frog][dart_frog_badge]][dart_frog_link]
 
-An example application built with dart_frog
+An example api book application built with dart_frog and firebase
+
+> To start the server you need to write the following in terminal 
+```shell
+dart_frog dev
+```
+
+> **_NOTE:_** The server run on port 8080 by default to use a specific port
+```shell
+dart_frog dev --port your_port
+```
+> the api contains **admin** route as well as **user** route each of which contains another
+> 3 routes **category**, **popular** and **search**
+> within **category** route there is another route **add_book** so the admin can
+> add a new book in this category
+
+> So we have 3 endpoints on admin part `admin/category/add_book`, `admin/popular` and `admin/search`
+> and another 3 endpoints on user part `user/category`, `user/popular` and `user/search`
+
+> **_NOTE:_** the user have limited permissions so he can send a **get** request only
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
